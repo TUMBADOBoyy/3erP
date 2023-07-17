@@ -7,7 +7,7 @@
         <Menu class="javax.swing.JMenu" name="jMenu1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\ANTONIO LEON\Desktop\Git\Login\lupa.png"/>
+              <Image iconType="3" name="/Imagenes/lupa.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
@@ -33,7 +33,7 @@
         <Menu class="javax.swing.JMenu" name="jMenu2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\ANTONIO LEON\Desktop\Git\Login\insertar.png"/>
+              <Image iconType="3" name="/Imagenes/insertar.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Insertar"/>
           </Properties>
@@ -72,7 +72,7 @@
         <Menu class="javax.swing.JMenu" name="jMenu3">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\ANTONIO LEON\Desktop\Git\Login\actualizado.png"/>
+              <Image iconType="3" name="/Imagenes/actualizado.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Actualizar"/>
           </Properties>
@@ -106,7 +106,7 @@
         <Menu class="javax.swing.JMenu" name="jMenu4">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\ANTONIO LEON\Desktop\Git\Login\borrar.png"/>
+              <Image iconType="3" name="/Imagenes/borrar.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Eliminar"/>
           </Properties>
@@ -182,7 +182,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\ANTONIO LEON\Desktop\Git\Login\t.jpg"/>
+              <Image iconType="3" name="/Imagenes/t.jpg"/>
             </Property>
           </Properties>
           <Constraints>

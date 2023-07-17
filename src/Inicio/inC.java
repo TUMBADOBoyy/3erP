@@ -45,22 +45,22 @@ public class inC extends javax.swing.JFrame {
         jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 110, -1));
         jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 110, -1));
 
-        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\ANTONIO LEON\\Desktop\\Git\\Login\\cerrar.png")); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 40, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 40, -1));
 
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\ANTONIO LEON\\Desktop\\Git\\Login\\volver.png")); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/volver.png"))); // NOI18N
         jButton2.setText("Volver");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Engravers MT", 2, 12)); // NOI18N
         jLabel4.setText("ID");
@@ -70,7 +70,7 @@ public class inC extends javax.swing.JFrame {
         jLabel3.setText("Direccion");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\ANTONIO LEON\\Desktop\\Git\\Login\\insertar.png")); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/insertar.png"))); // NOI18N
         jButton1.setText("Insertar");
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, -1, -1));
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 110, -1));
@@ -79,7 +79,7 @@ public class inC extends javax.swing.JFrame {
         jLabel2.setText("Nombre");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\ANTONIO LEON\\Desktop\\Git\\Login\\t.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/t.jpg"))); // NOI18N
         jLabel1.setText("Presentac");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 280));
 

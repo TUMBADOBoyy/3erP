@@ -34,12 +34,12 @@ public class Sesion extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\ANTONIO LEON\\Desktop\\Git\\Login\\contrasena.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/contrasena.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 130, 130));
 
         jButton1.setBackground(new java.awt.Color(153, 153, 153));
         jButton1.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\ANTONIO LEON\\Desktop\\Git\\Login\\cerrar.png")); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -59,7 +59,8 @@ public class Sesion extends javax.swing.JFrame {
         jLabel4.setText("Contraseña:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
 
-        lEntrada.setIcon(new javax.swing.ImageIcon("C:\\Users\\ANTONIO LEON\\Downloads\\iniciar-sesion.png")); // NOI18N
+        lEntrada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iniciar-sesion (1).png"))); // NOI18N
+        lEntrada.setToolTipText("");
         lEntrada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lEntrada.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -69,7 +70,7 @@ public class Sesion extends javax.swing.JFrame {
         getContentPane().add(lEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 440, 70, 70));
 
         jlEntrada.setBackground(new java.awt.Color(204, 102, 0));
-        jlEntrada.setIcon(new javax.swing.ImageIcon("C:\\Users\\ANTONIO LEON\\Desktop\\Git\\Login\\lol.jpeg")); // NOI18N
+        jlEntrada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lol.jpeg"))); // NOI18N
         jlEntrada.setText("jLabel1");
         getContentPane().add(jlEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 322, 540));
 

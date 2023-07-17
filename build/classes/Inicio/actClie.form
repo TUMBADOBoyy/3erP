@@ -41,9 +41,6 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="jButton4">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\ANTONIO LEON\Desktop\Git\Login\carga-en-la-nube.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Actualizar"/>
           </Properties>
           <Constraints>
@@ -67,11 +64,6 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JButton" name="jButton3">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\ANTONIO LEON\Desktop\Git\Login\cerrar.png"/>
-            </Property>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
           </Events>
@@ -83,9 +75,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton2">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\ANTONIO LEON\Desktop\Git\Login\volver.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Volver"/>
           </Properties>
           <Events>
@@ -125,9 +114,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\ANTONIO LEON\Desktop\Git\Login\lupa.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
           <Constraints>
@@ -159,7 +145,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\ANTONIO LEON\Desktop\Git\Login\t.jpg"/>
+              <Image iconType="3" name="/Imagenes/t.jpg"/>
             </Property>
           </Properties>
           <Constraints>

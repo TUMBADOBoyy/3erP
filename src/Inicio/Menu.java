@@ -51,10 +51,10 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\ANTONIO LEON\\Desktop\\Git\\Login\\t.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/t.jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jMenu1.setIcon(new javax.swing.ImageIcon("C:\\Users\\ANTONIO LEON\\Desktop\\Git\\Login\\lupa.png")); // NOI18N
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lupa.png"))); // NOI18N
         jMenu1.setText("Buscar");
 
         jMenuItem2.setText("Buscar ID");
@@ -75,7 +75,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setIcon(new javax.swing.ImageIcon("C:\\Users\\ANTONIO LEON\\Desktop\\Git\\Login\\insertar.png")); // NOI18N
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/insertar.png"))); // NOI18N
         jMenu2.setText("Insertar");
 
         jMenuItem1.setText("Cliente");
@@ -107,7 +107,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setIcon(new javax.swing.ImageIcon("C:\\Users\\ANTONIO LEON\\Desktop\\Git\\Login\\actualizado.png")); // NOI18N
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/actualizado.png"))); // NOI18N
         jMenu3.setText("Actualizar");
 
         jMenuItem7.setText("Cliente");
@@ -136,7 +136,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setIcon(new javax.swing.ImageIcon("C:\\Users\\ANTONIO LEON\\Desktop\\Git\\Login\\borrar.png")); // NOI18N
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borrar.png"))); // NOI18N
         jMenu4.setText("Eliminar");
 
         jMenuItem10.setText("Cliente");
