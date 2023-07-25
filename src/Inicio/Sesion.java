@@ -23,7 +23,7 @@ public class Sesion extends javax.swing.JFrame {
 
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        tfNombre = new javax.swing.JTextField();
+        tfUser = new javax.swing.JTextField();
         tfClave = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -46,12 +46,18 @@ public class Sesion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 40, 40));
-        getContentPane().add(tfNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 100, 30));
+        getContentPane().add(tfUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 100, 30));
+
+        tfClave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfClaveActionPerformed(evt);
+            }
+        });
         getContentPane().add(tfClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 100, 30));
 
         jLabel3.setFont(new java.awt.Font("Arial Black", 2, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Nombre: ");
+        jLabel3.setText("Usuario:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Arial Black", 2, 12)); // NOI18N
@@ -59,7 +65,7 @@ public class Sesion extends javax.swing.JFrame {
         jLabel4.setText("Contraseña:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, -1, -1));
 
-        lEntrada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iniciar-sesion (1).png"))); // NOI18N
+        lEntrada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/log-in.png"))); // NOI18N
         lEntrada.setToolTipText("");
         lEntrada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lEntrada.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -89,10 +95,10 @@ public class Sesion extends javax.swing.JFrame {
             public void onComplete(Response status) {
                 if(status.isSuccess()){
                     try{
-                        JSONObject Nombres=new JSONObject(status.getResult());
-                        String NombreWeb=Nombres.getJSONObject("0").get("Nombre").toString();
-                        String DireccionWeb=Nombres.getJSONObject("0").get("Direccion").toString();
-                        if(tfNombre.getText().toString().equals(NombreWeb) && tfClave.getText().toString().equals(DireccionWeb)){
+                        JSONObject u=new JSONObject(status.getResult());
+                        String UserW=u.getJSONObject("0").get("User").toString();
+                        String PasswordW=u.getJSONObject("0").get("Password").toString();
+                        if(tfUser.getText().toString().equals(UserW) && tfClave.getText().toString().equals(PasswordW)){
                             this.setVisible(false);
                             ventana.setVisible(true);
                         }
@@ -110,12 +116,16 @@ public class Sesion extends javax.swing.JFrame {
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
-        String Nombre=tfNombre.getText().toString();
-        String Direccion=tfClave.getText().toString();
+        String User=tfUser.getText().toString();
+        String Password=tfClave.getText().toString();
     
-        cliente.excecute("http://localhost/Api/login.php?Nombre="+Nombre+"&Direccion="+Direccion+"");
+        cliente.excecute("http://localhost/Api/login.php?User="+User+"&Password="+Password+"");
         this.setVisible(false);
     }//GEN-LAST:event_lEntradaMouseClicked
+
+    private void tfClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfClaveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfClaveActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -163,7 +173,7 @@ public class Sesion extends javax.swing.JFrame {
     private javax.swing.JLabel jlEntrada;
     private javax.swing.JLabel lEntrada;
     private javax.swing.JTextField tfClave;
-    private javax.swing.JTextField tfNombre;
+    private javax.swing.JTextField tfUser;
     // End of variables declaration//GEN-END:variables
     
 }

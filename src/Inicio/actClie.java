@@ -1,19 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Inicio;
-
-/**
- *
- * @author ANTONIO LEON
- */
+import com.devazt.networking.HttpClient;
+import com.devazt.networking.OnHttpRequestComplete;
+import com.devazt.networking.Response;
+import javax.swing.JOptionPane;
+import org.json.JSONObject;
 public class actClie extends javax.swing.JFrame {
-
-    /**
-     * Creates new form buscarID
-     */
+    
+    String ID;
     public actClie() {
         initComponents();
     }
@@ -28,27 +22,42 @@ public class actClie extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        btnActuC = new javax.swing.JButton();
+        tfUser = new javax.swing.JTextField();
+        tfNombre = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        btnABuscar = new javax.swing.JButton();
+        tfID = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        tfPassword = new javax.swing.JTextField();
+        tfRol = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton4.setText("Actualizar");
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, -1, -1));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 110, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 170, 110, -1));
+        btnActuC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/actualizado.png"))); // NOI18N
+        btnActuC.setText("Actualizar");
+        btnActuC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActuCActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnActuC, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, -1, -1));
 
+        tfUser.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        jPanel1.add(tfUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 110, -1));
+
+        tfNombre.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        jPanel1.add(tfNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 110, -1));
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -56,32 +65,54 @@ public class actClie extends javax.swing.JFrame {
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 40, -1));
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/volver.png"))); // NOI18N
         jButton2.setText("Volver");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 300, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Engravers MT", 2, 10)); // NOI18N
-        jLabel4.setText("Direccion");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, -1, -1));
+        jLabel4.setText("Usuario");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Engravers MT", 2, 10)); // NOI18N
         jLabel3.setText("Nombre: ");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, -1, -1));
 
-        jButton1.setText("Buscar");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, -1, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 110, -1));
+        btnABuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lupa.png"))); // NOI18N
+        btnABuscar.setText("Buscar");
+        btnABuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnABuscarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnABuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, -1, -1));
+        jPanel1.add(tfID, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 110, -1));
 
         jLabel2.setFont(new java.awt.Font("Engravers MT", 2, 12)); // NOI18N
         jLabel2.setText("Ingresa ID de cliente");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
+        jLabel5.setFont(new java.awt.Font("Engravers MT", 2, 10)); // NOI18N
+        jLabel5.setText("Contraseña");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Engravers MT", 2, 10)); // NOI18N
+        jLabel6.setText("Rol");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, -1, -1));
+
+        tfPassword.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        jPanel1.add(tfPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 110, -1));
+
+        tfRol.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        jPanel1.add(tfRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 240, 110, -1));
+
+        jLabel1.setFont(new java.awt.Font("Engravers MT", 2, 10)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/t.jpg"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 310));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 340));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -106,6 +137,47 @@ public class actClie extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btnABuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnABuscarActionPerformed
+        // TODO add your handling code here:
+        HttpClient b=new HttpClient(new OnHttpRequestComplete() {
+            @Override
+            public void onComplete(Response status) {
+                if(status.isSuccess()){
+                    JSONObject ID=new JSONObject(status.getResult());
+                    String NOM=ID.getJSONObject("0").get("Nombre").toString();
+                    String US=ID.getJSONObject("0").get("User").toString();
+                    String Pas=ID.getJSONObject("0").get("Password").toString();
+                    String Rol=ID.getJSONObject("0").get("Rol").toString();
+                    tfNombre.setText(NOM);
+                    tfUser.setText(US);
+                    tfPassword.setText(Pas);
+                    tfRol.setText(Rol);
+                }
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        ID=tfID.getText().toString();
+        b.excecute("http://localhost/Api/buscarID.php?ID="+ID+"");
+    }//GEN-LAST:event_btnABuscarActionPerformed
+
+    private void btnActuCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActuCActionPerformed
+        // TODO add your handling code here:
+        HttpClient a = new HttpClient(new OnHttpRequestComplete() {
+            @Override
+            public void onComplete(Response status) {
+                if(status.isSuccess()){
+                    JOptionPane.showMessageDialog(null, "Cliente actualizado correctamente");
+                }
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        String Nom=tfNombre.getText().toString();
+        String User=tfUser.getText().toString();
+        String Pass=tfPassword.getText().toString();
+        String Rol=tfRol.getText().toString();
+        a.excecute("http://localhost/Api/ActC.php?ID="+ID+"&Nombre="+Nom+"&User="+User+"&Password="+Pass+"&Rol="+Rol+" ");
+    }//GEN-LAST:event_btnActuCActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,17 +216,21 @@ public class actClie extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnABuscar;
+    private javax.swing.JButton btnActuC;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField tfID;
+    private javax.swing.JTextField tfNombre;
+    private javax.swing.JTextField tfPassword;
+    private javax.swing.JTextField tfRol;
+    private javax.swing.JTextField tfUser;
     // End of variables declaration//GEN-END:variables
 }

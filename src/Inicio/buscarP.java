@@ -1,19 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Inicio;
 
-/**
- *
- * @author ANTONIO LEON
- */
+package Inicio;
+import com.devazt.networking.HttpClient;
+import com.devazt.networking.OnHttpRequestComplete;
+import com.devazt.networking.Response;
+import org.json.JSONObject;
 public class buscarP extends javax.swing.JFrame {
 
-    /**
-     * Creates new form buscarID
-     */
+
     public buscarP() {
         initComponents();
     }
@@ -34,9 +27,13 @@ public class buscarP extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        btnBuscarP = new javax.swing.JButton();
+        tfID = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
+        lblMarca = new javax.swing.JLabel();
+        lblPresentacion = new javax.swing.JLabel();
+        lblPrecio = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -76,14 +73,35 @@ public class buscarP extends javax.swing.JFrame {
         jLabel3.setText("Nombre: ");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lupa.png"))); // NOI18N
-        jButton1.setText("Buscar");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, -1, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 110, -1));
+        btnBuscarP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lupa.png"))); // NOI18N
+        btnBuscarP.setText("Buscar");
+        btnBuscarP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarPActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnBuscarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, -1, -1));
+        jPanel1.add(tfID, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 110, -1));
 
         jLabel2.setFont(new java.awt.Font("Engravers MT", 2, 12)); // NOI18N
         jLabel2.setText("Ingresa ID del Producto");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+
+        lblNombre.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        lblNombre.setText("...");
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 150, -1, -1));
+
+        lblMarca.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        lblMarca.setText("...");
+        jPanel1.add(lblMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, -1, -1));
+
+        lblPresentacion.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        lblPresentacion.setText("...");
+        jPanel1.add(lblPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, -1, -1));
+
+        lblPrecio.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        lblPrecio.setText("...");
+        jPanel1.add(lblPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/t.jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 280));
@@ -111,6 +129,29 @@ public class buscarP extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btnBuscarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPActionPerformed
+        // TODO add your handling code here:
+        HttpClient p=new HttpClient(new OnHttpRequestComplete() {
+            @Override
+            public void onComplete(Response status) {
+                if(status.isSuccess()){
+                        JSONObject ID=new JSONObject(status.getResult());
+                        String NOM=ID.getJSONObject("0").get("Nombre").toString();
+                        String Marca=ID.getJSONObject("0").get("Marca").toString();
+                        String Presentacion=ID.getJSONObject("0").get("Presentacion").toString();
+                        String Precio=ID.getJSONObject("0").get("Precio").toString();
+                        lblNombre.setText(NOM);
+                        lblMarca.setText(Marca);
+                        lblPresentacion.setText(Presentacion);
+                        lblPrecio.setText(Precio);
+                }
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        String ID=tfID.getText().toString();
+        p.excecute("http://localhost/Api/buscarPID.php?ID="+ID+"");
+    }//GEN-LAST:event_btnBuscarPActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,7 +190,7 @@ public class buscarP extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnBuscarP;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
@@ -159,6 +200,10 @@ public class buscarP extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblMarca;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblPrecio;
+    private javax.swing.JLabel lblPresentacion;
+    private javax.swing.JTextField tfID;
     // End of variables declaration//GEN-END:variables
 }

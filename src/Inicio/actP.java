@@ -1,19 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Inicio;
-
-/**
- *
- * @author ANTONIO LEON
- */
+import com.devazt.networking.HttpClient;
+import com.devazt.networking.OnHttpRequestComplete;
+import com.devazt.networking.Response;
+import javax.swing.JOptionPane;
+import org.json.JSONObject;
 public class actP extends javax.swing.JFrame {
-
-    /**
-     * Creates new form buscarID
-     */
+    String ID;
+    
     public actP() {
         initComponents();
     }
@@ -28,27 +22,27 @@ public class actP extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        tfPrecio = new javax.swing.JTextField();
+        tfPresentacion = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        tfMarca = new javax.swing.JTextField();
+        tfNombre = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
+        tfID = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        btnActP = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 110, -1));
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 110, -1));
+        jPanel1.add(tfPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 230, 110, -1));
+        jPanel1.add(tfPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 110, -1));
 
         jLabel6.setFont(new java.awt.Font("Engravers MT", 2, 10)); // NOI18N
         jLabel6.setText("Precio");
@@ -57,12 +51,8 @@ public class actP extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Engravers MT", 2, 10)); // NOI18N
         jLabel5.setText("Presentacion");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, 20));
-
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/actualizado.png"))); // NOI18N
-        jButton4.setText("Actualizar");
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, -1, -1));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 110, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 110, -1));
+        jPanel1.add(tfMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 110, -1));
+        jPanel1.add(tfNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 110, -1));
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -89,14 +79,28 @@ public class actP extends javax.swing.JFrame {
         jLabel3.setText("Nombre: ");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lupa.png"))); // NOI18N
-        jButton1.setText("Buscar");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, -1, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 110, -1));
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lupa.png"))); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, -1, -1));
+        jPanel1.add(tfID, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, 110, -1));
 
         jLabel2.setFont(new java.awt.Font("Engravers MT", 2, 12)); // NOI18N
         jLabel2.setText("Ingresa ID deL Producto");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+
+        btnActP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/actualizado.png"))); // NOI18N
+        btnActP.setText("Actualizar");
+        btnActP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActPActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnActP, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/t.jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 310));
@@ -124,6 +128,47 @@ public class actP extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        HttpClient b=new HttpClient(new OnHttpRequestComplete() {
+            @Override
+            public void onComplete(Response status) {
+                if(status.isSuccess()){
+                        JSONObject ID=new JSONObject(status.getResult());
+                        String NOM=ID.getJSONObject("0").get("Nombre").toString();
+                        String Marca=ID.getJSONObject("0").get("Marca").toString();
+                        String Presentacion=ID.getJSONObject("0").get("Presentacion").toString();
+                        String Precio=ID.getJSONObject("0").get("Precio").toString();
+                        tfNombre.setText(NOM);
+                        tfMarca.setText(Marca);
+                        tfPresentacion.setText(Presentacion);
+                        tfPrecio.setText(Precio);
+                }
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        ID=tfID.getText().toString();
+        b.excecute("http://localhost/Api/buscarPID.php?ID="+ID+"");
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnActPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActPActionPerformed
+        // TODO add your handling code here:
+        HttpClient ap = new HttpClient(new OnHttpRequestComplete() {
+            @Override
+            public void onComplete(Response status) {
+                if(status.isSuccess()){
+                    JOptionPane.showMessageDialog(null, "Producto actualizado correctamente");
+                }
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        String Nom=tfNombre.getText().toString();
+        String Marca=tfMarca.getText().toString();
+        String Presentacion=tfPresentacion.getText().toString();
+        String Precio=tfPrecio.getText().toString();
+        ap.excecute("http://localhost/Api/ActP.php?ID="+ID+"&Nombre="+Nom+"&Marca="+Marca+"&Presentacion="+Presentacion+"&Precio="+Precio+"");
+    }//GEN-LAST:event_btnActPActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,10 +209,10 @@ public class actP extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnActP;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -175,10 +220,10 @@ public class actP extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField tfID;
+    private javax.swing.JTextField tfMarca;
+    private javax.swing.JTextField tfNombre;
+    private javax.swing.JTextField tfPrecio;
+    private javax.swing.JTextField tfPresentacion;
     // End of variables declaration//GEN-END:variables
 }

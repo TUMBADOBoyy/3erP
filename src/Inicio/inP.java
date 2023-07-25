@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Inicio;
 
-/**
- *
- * @author ANTONIO LEON
- */
+package Inicio;
+import com.devazt.networking.HttpClient;
+import com.devazt.networking.OnHttpRequestComplete;
+import com.devazt.networking.Response;
+import javax.swing.JOptionPane;
+import org.json.JSONObject;
 public class inP extends javax.swing.JFrame {
 
     /**
@@ -28,29 +24,31 @@ public class inP extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        tfPrecio = new javax.swing.JTextField();
+        tfPresentacion = new javax.swing.JTextField();
+        tfMarca = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        btnInsertarP = new javax.swing.JButton();
+        tfNombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        tfID = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 110, -1));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 110, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 110, -1));
+        jPanel1.add(tfPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 110, -1));
+        jPanel1.add(tfPresentacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 110, -1));
+        jPanel1.add(tfMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 110, -1));
 
         jLabel5.setFont(new java.awt.Font("Engravers MT", 2, 12)); // NOI18N
         jLabel5.setText("Precio");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, 20));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, 20));
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -71,20 +69,30 @@ public class inP extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Engravers MT", 2, 12)); // NOI18N
         jLabel4.setText("Presentacion");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Engravers MT", 2, 12)); // NOI18N
         jLabel3.setText("Marca");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/insertar.png"))); // NOI18N
-        jButton1.setText("Insertar");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, -1, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 110, -1));
+        btnInsertarP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/insertar.png"))); // NOI18N
+        btnInsertarP.setText("Insertar");
+        btnInsertarP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsertarPActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnInsertarP, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, -1, -1));
+        jPanel1.add(tfNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 110, -1));
 
         jLabel2.setFont(new java.awt.Font("Engravers MT", 2, 12)); // NOI18N
         jLabel2.setText("Nombre");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Engravers MT", 2, 12)); // NOI18N
+        jLabel6.setText("ID");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+        jPanel1.add(tfID, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 110, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/t.jpg"))); // NOI18N
         jLabel1.setText("Presentac");
@@ -113,6 +121,25 @@ public class inP extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btnInsertarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarPActionPerformed
+        // TODO add your handling code here:
+        HttpClient i=new HttpClient(new OnHttpRequestComplete() {
+            @Override
+            public void onComplete(Response status) {
+                if(status.isSuccess()){
+                    JOptionPane.showMessageDialog(null, "Producto registrado correctamente");
+                }
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        String ID=tfID.getText().toString();
+        String Nombre=tfNombre.getText().toString();
+        String Marca=tfMarca.getText().toString();
+        String Presentacion=tfPresentacion.getText().toString();
+        String Precio=tfPrecio.getText().toString();
+        i.excecute("http://localhost/Api/Api1.php?ID="+ID+"&Nombre="+Nombre+"&Marca="+Marca+"&Presentacion="+Presentacion+"&Precio="+Precio+"");
+    }//GEN-LAST:event_btnInsertarPActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,7 +178,7 @@ public class inP extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnInsertarP;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
@@ -159,10 +186,12 @@ public class inP extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField tfID;
+    private javax.swing.JTextField tfMarca;
+    private javax.swing.JTextField tfNombre;
+    private javax.swing.JTextField tfPrecio;
+    private javax.swing.JTextField tfPresentacion;
     // End of variables declaration//GEN-END:variables
 }

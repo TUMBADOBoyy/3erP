@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Inicio;
 
-/**
- *
- * @author ANTONIO LEON
- */
+package Inicio;
+import com.devazt.networking.HttpClient;
+import com.devazt.networking.OnHttpRequestComplete;
+import com.devazt.networking.Response;
+import javax.swing.JOptionPane;
+import org.json.JSONObject;
 public class inC extends javax.swing.JFrame {
 
     /**
@@ -28,22 +24,24 @@ public class inC extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        tfPassword = new javax.swing.JTextField();
+        tfUser = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        btnInsertar = new javax.swing.JButton();
+        tfNombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        tfRol = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 110, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 110, -1));
+        jPanel1.add(tfPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 110, -1));
+        jPanel1.add(tfUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 110, -1));
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cerrar.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -63,21 +61,37 @@ public class inC extends javax.swing.JFrame {
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Engravers MT", 2, 12)); // NOI18N
-        jLabel4.setText("ID");
+        jLabel4.setText("PASSWORD");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Engravers MT", 2, 12)); // NOI18N
-        jLabel3.setText("Direccion");
+        jLabel3.setText("USER");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/insertar.png"))); // NOI18N
-        jButton1.setText("Insertar");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, -1, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 110, -1));
+        btnInsertar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/insertar.png"))); // NOI18N
+        btnInsertar.setText("Insertar");
+        btnInsertar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsertarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnInsertar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, -1, -1));
+        jPanel1.add(tfNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 110, -1));
 
         jLabel2.setFont(new java.awt.Font("Engravers MT", 2, 12)); // NOI18N
         jLabel2.setText("Nombre");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Engravers MT", 2, 10)); // NOI18N
+        jLabel5.setText("ROL");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
+
+        tfRol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfRolActionPerformed(evt);
+            }
+        });
+        jPanel1.add(tfRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 110, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/t.jpg"))); // NOI18N
         jLabel1.setText("Presentac");
@@ -106,6 +120,29 @@ public class inC extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void tfRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfRolActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfRolActionPerformed
+
+    private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
+        // TODO add your handling code here:
+        HttpClient i= new HttpClient(new OnHttpRequestComplete() {
+            @Override
+            public void onComplete(Response status) {
+                if(status.isSuccess()){
+                    JOptionPane.showMessageDialog(null, "Cliente agregado correctamente");
+                }
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+        String Nom=tfNombre.getText().toString();
+        String User=tfUser.getText().toString();
+        String Pass=tfPassword.getText().toString();
+        String Rol=tfRol.getText().toString();
+        i.excecute("http://localhost/Api/InC.php?Nombre="+Nom+"&User="+User+"&Password="+Pass+"&Rol="+Rol+"");
+        
+    }//GEN-LAST:event_btnInsertarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -146,16 +183,18 @@ public class inC extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnInsertar;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField tfNombre;
+    private javax.swing.JTextField tfPassword;
+    private javax.swing.JTextField tfRol;
+    private javax.swing.JTextField tfUser;
     // End of variables declaration//GEN-END:variables
 }
