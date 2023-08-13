@@ -1,12 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Inicio;
 import com.devazt.networking.HttpClient;
 import com.devazt.networking.OnHttpRequestComplete;
 import com.devazt.networking.Response;
+import javax.swing.JOptionPane;
 import org.json.JSONObject;
 public class actV extends javax.swing.JFrame {
 
@@ -45,6 +42,11 @@ public class actV extends javax.swing.JFrame {
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/actualizado.png"))); // NOI18N
         jButton4.setText("Actualizar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, -1, -1));
 
         tfCantidad.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
@@ -129,29 +131,35 @@ public class actV extends javax.swing.JFrame {
                     JSONObject p=new JSONObject(status.getResult());
                     String Cant=p.getJSONObject("0").get("Cantidad").toString();
                     tfCantidad.setText(Cant);
+                    JSONObject ID=new JSONObject(status.getResult());
+                    String NOM=ID.getJSONObject("0").get("Nombre").toString();
+                    lblNombre.setText(NOM);
                 }
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
         String IDs=tfID.getText().toString();
-        p.excecute("http://localhost/Api/buscarProducto.php?ID_P="+IDs+"");
-        HttpClient b= new HttpClient(new OnHttpRequestComplete() {
+        p.excecute("http://localhost/Api/buscarProducto.php?ID_P="+IDs+"");   
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        HttpClient aI= new HttpClient(new OnHttpRequestComplete() {
             @Override
             public void onComplete(Response status) {
                 if(status.isSuccess()){
-                    JSONObject ID=new JSONObject(status.getResult());
-                    String NOM=ID.getJSONObject("0").get("Nombre").toString();
-                    lblNombre.setText(NOM);
-                    
+                    JOptionPane.showMessageDialog(null, "Inventario actualizado exitosamente");
                 }
                 throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
         String ID=tfID.getText().toString();
-        b.excecute("http://localhost/Api/buscarPID.php?ID="+ID+"");
+        String Cant=tfCantidad.getText().toString();
+        aI.excecute("http://localhost/Api/ActInv.php?ID_P="+ID+"&Cantidad="+Cant+"");
         
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

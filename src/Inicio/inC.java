@@ -140,8 +140,7 @@ public class inC extends javax.swing.JFrame {
         String User=tfUser.getText().toString();
         String Pass=tfPassword.getText().toString();
         String Rol=tfRol.getText().toString();
-        i.excecute("http://localhost/Api/InC.php?Nombre="+Nom+"&User="+User+"&Password="+Pass+"&Rol="+Rol+"");
-        
+        i.excecute("http://localhost/Api/InC.php?Nombre="+Nom+"&User="+User+"&Password="+Pass+"&Rol="+Rol+""); 
     }//GEN-LAST:event_btnInsertarActionPerformed
 
     /**
