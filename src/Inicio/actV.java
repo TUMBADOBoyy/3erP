@@ -12,6 +12,7 @@ public class actV extends javax.swing.JFrame {
      */
     public actV() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -128,14 +129,20 @@ public class actV extends javax.swing.JFrame {
             @Override
             public void onComplete(Response status) {
                 if(status.isSuccess()){
-                    JSONObject p=new JSONObject(status.getResult());
-                    String Cant=p.getJSONObject("0").get("Cantidad").toString();
-                    tfCantidad.setText(Cant);
-                    JSONObject ID=new JSONObject(status.getResult());
-                    String NOM=ID.getJSONObject("0").get("Nombre").toString();
-                    lblNombre.setText(NOM);
+                    try{
+                        JSONObject p=new JSONObject(status.getResult());
+                        String Cant=p.getJSONObject("0").get("Cantidad").toString();
+                        tfCantidad.setText(Cant);
+                        JSONObject ID=new JSONObject(status.getResult());
+                        String NOM=ID.getJSONObject("0").get("Nombre").toString();
+                        lblNombre.setText(NOM);
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(null, "El producto no existe");
+                        tfCantidad.setText("");
+                        tfID.setText("");
+                        lblNombre.setText("");
+                    }
                 }
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
         String IDs=tfID.getText().toString();
@@ -150,9 +157,12 @@ public class actV extends javax.swing.JFrame {
             @Override
             public void onComplete(Response status) {
                 if(status.isSuccess()){
-                    JOptionPane.showMessageDialog(null, "Inventario actualizado exitosamente");
+                    try{
+                        JOptionPane.showMessageDialog(null, "Inventario actualizado exitosamente");
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(null, "Error al actualuzar inventario");
+                    }
                 }
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
         String ID=tfID.getText().toString();

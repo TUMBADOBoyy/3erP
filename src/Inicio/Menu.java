@@ -16,6 +16,7 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -31,21 +32,21 @@ public class Menu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        buscarID = new javax.swing.JMenuItem();
+        buscarP = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        inC = new javax.swing.JMenuItem();
+        inP = new javax.swing.JMenuItem();
+        inCompra = new javax.swing.JMenuItem();
+        inV = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
+        actClie = new javax.swing.JMenuItem();
+        actP = new javax.swing.JMenuItem();
+        actV = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
+        eliminarC = new javax.swing.JMenuItem();
+        eliminarP = new javax.swing.JMenuItem();
+        eliminarVenta = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,116 +58,116 @@ public class Menu extends javax.swing.JFrame {
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lupa.png"))); // NOI18N
         jMenu1.setText("Buscar");
 
-        jMenuItem2.setText("Buscar ID");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        buscarID.setText("Buscar ID");
+        buscarID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                buscarIDActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(buscarID);
 
-        jMenuItem3.setText("Buscar Producto");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        buscarP.setText("Buscar Producto");
+        buscarP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                buscarPActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        jMenu1.add(buscarP);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/insertar.png"))); // NOI18N
         jMenu2.setText("Insertar");
 
-        jMenuItem1.setText("Cliente");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        inC.setText("Cliente");
+        inC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                inCActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
+        jMenu2.add(inC);
 
-        jMenuItem4.setText("Producto");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        inP.setText("Producto");
+        inP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                inPActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem4);
+        jMenu2.add(inP);
 
-        jMenuItem5.setText("Compra de Producto");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        inCompra.setText("Compra de Producto");
+        inCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                inCompraActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem5);
+        jMenu2.add(inCompra);
 
-        jMenuItem6.setText("Insertar Venta");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        inV.setText("Insertar Venta");
+        inV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                inVActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem6);
+        jMenu2.add(inV);
 
         jMenuBar1.add(jMenu2);
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/actualizado.png"))); // NOI18N
         jMenu3.setText("Actualizar");
 
-        jMenuItem7.setText("Cliente");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        actClie.setText("Cliente");
+        actClie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                actClieActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem7);
+        jMenu3.add(actClie);
 
-        jMenuItem8.setText("Producto");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+        actP.setText("Producto");
+        actP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
+                actPActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem8);
+        jMenu3.add(actP);
 
-        jMenuItem9.setText("Inventario");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+        actV.setText("Inventario");
+        actV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
+                actVActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem9);
+        jMenu3.add(actV);
 
         jMenuBar1.add(jMenu3);
 
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borrar.png"))); // NOI18N
         jMenu4.setText("Eliminar");
 
-        jMenuItem10.setText("Cliente");
-        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+        eliminarC.setText("Cliente");
+        eliminarC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem10ActionPerformed(evt);
+                eliminarCActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem10);
+        jMenu4.add(eliminarC);
 
-        jMenuItem11.setText("Producto");
-        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+        eliminarP.setText("Producto");
+        eliminarP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem11ActionPerformed(evt);
+                eliminarPActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem11);
+        jMenu4.add(eliminarP);
 
-        jMenuItem12.setText("Venta");
-        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+        eliminarVenta.setText("Venta");
+        eliminarVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem12ActionPerformed(evt);
+                eliminarVentaActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem12);
+        jMenu4.add(eliminarVenta);
 
         jMenuBar1.add(jMenu4);
 
@@ -186,82 +187,100 @@ public class Menu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void buscarIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarIDActionPerformed
         // TODO add your handling code here:
         buscarID b= new buscarID();
         b.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_buscarIDActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void buscarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarPActionPerformed
         // TODO add your handling code here:
         buscarP p= new buscarP();
         p.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_buscarPActionPerformed
 
-    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+    private void eliminarCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarCActionPerformed
         // TODO add your handling code here:
         eliminarC c= new eliminarC();
         c.setVisible(true);
             
-    }//GEN-LAST:event_jMenuItem10ActionPerformed
+    }//GEN-LAST:event_eliminarCActionPerformed
 
-    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+    private void eliminarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarPActionPerformed
         // TODO add your handling code here:
         eliminarP p= new eliminarP();
         p.setVisible(true);
-    }//GEN-LAST:event_jMenuItem11ActionPerformed
+    }//GEN-LAST:event_eliminarPActionPerformed
 
-    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+    private void eliminarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarVentaActionPerformed
         // TODO add your handling code here:
         eliminarVenta v= new eliminarVenta();
         v.setVisible(true);
-    }//GEN-LAST:event_jMenuItem12ActionPerformed
+    }//GEN-LAST:event_eliminarVentaActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void inPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inPActionPerformed
         // TODO add your handling code here:
         inP i=new inP();
         i.setVisible(true);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_inPActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void inCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inCActionPerformed
         // TODO add your handling code here:
         inC c= new inC();
         c.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_inCActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void inVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inVActionPerformed
         // TODO add your handling code here:
         inV v= new inV();
         v.setVisible(true);
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_inVActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+    private void actClieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actClieActionPerformed
         // TODO add your handling code here:
         actClie a=new actClie();
         a.setVisible(true);
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    }//GEN-LAST:event_actClieActionPerformed
 
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+    private void actPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actPActionPerformed
         // TODO add your handling code here:
         actP p= new actP();
         p.setVisible(true);
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
+    }//GEN-LAST:event_actPActionPerformed
 
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+    private void actVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actVActionPerformed
         // TODO add your handling code here:
         actV v=new actV();
         v.setVisible(true);
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
+    }//GEN-LAST:event_actVActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void inCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inCompraActionPerformed
         // TODO add your handling code here:
         inCompra c=new inCompra();
         c.setVisible(true);
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_inCompraActionPerformed
 
     /**
      * @param args the command line arguments
      */
+    public void vendedor(){
+        buscarID.setEnabled(false);
+        inC.setEnabled(false);
+        inCompra.setEnabled(false);
+        inP.setEnabled(false);
+        actClie.setEnabled(false);
+        eliminarC.setEnabled(false);
+        eliminarP.setEnabled(false);
+        eliminarVenta.setEnabled(false);
+    }
+    
+    public void gerente(){
+        buscarID.setEnabled(false);
+        inC.setEnabled(false);
+        actClie.setEnabled(false);
+        eliminarC.setEnabled(false);
+    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -295,24 +314,24 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem actClie;
+    private javax.swing.JMenuItem actP;
+    private javax.swing.JMenuItem actV;
+    private javax.swing.JMenuItem buscarID;
+    private javax.swing.JMenuItem buscarP;
+    private javax.swing.JMenuItem eliminarC;
+    private javax.swing.JMenuItem eliminarP;
+    private javax.swing.JMenuItem eliminarVenta;
+    private javax.swing.JMenuItem inC;
+    private javax.swing.JMenuItem inCompra;
+    private javax.swing.JMenuItem inP;
+    private javax.swing.JMenuItem inV;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

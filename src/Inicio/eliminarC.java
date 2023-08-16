@@ -14,6 +14,7 @@ public class eliminarC extends javax.swing.JFrame {
      */
     public eliminarC() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -151,17 +152,27 @@ public class eliminarC extends javax.swing.JFrame {
             @Override
             public void onComplete(Response status) {
                 if(status.isSuccess()){
-                        JSONObject ID=new JSONObject(status.getResult());
-                        String NOM=ID.getJSONObject("0").get("Nombre").toString();
-                        String US=ID.getJSONObject("0").get("User").toString();
-                        String Pas=ID.getJSONObject("0").get("Password").toString();
-                        String Rol=ID.getJSONObject("0").get("Rol").toString();
-                        lblNombre.setText(NOM);
-                        lblUser.setText(US);
-                        lblPassword.setText(Pas);
-                        lblRol.setText(Rol);
+                    try{
+                            JSONObject ID=new JSONObject(status.getResult());
+                            String NOM=ID.getJSONObject("0").get("Nombre").toString();
+                            String US=ID.getJSONObject("0").get("User").toString();
+                            String Pas=ID.getJSONObject("0").get("Password").toString();
+                            String Rol=ID.getJSONObject("0").get("Rol").toString();
+                            lblNombre.setText(NOM);
+                            lblUser.setText(US);
+                            lblPassword.setText(Pas);
+                            lblRol.setText(Rol);
+                            tfID.setText("");
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(null, "El cliente no existe");
+                        lblNombre.setText("");
+                        lblUser.setText("");
+                        lblPassword.setText("");
+                        lblRol.setText("");
+                        tfID.setText("");
+                    }
                 }
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                
             }
         });
         String ID=tfID.getText().toString();
@@ -174,9 +185,22 @@ public class eliminarC extends javax.swing.JFrame {
             @Override
             public void onComplete(Response status) {
                 if(status.isSuccess()){
-                    JOptionPane.showMessageDialog(null, "Cliente eliminado exitosamente");
+                    try{
+                        JOptionPane.showMessageDialog(null, "Cliente eliminado exitosamente");
+                        lblNombre.setText("");
+                        lblUser.setText("");
+                        lblPassword.setText("");
+                        lblRol.setText("");
+                        tfID.setText("");
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(null, "Error al eliminar el cliente");
+                        lblNombre.setText("");
+                        lblUser.setText("");
+                        lblPassword.setText("");
+                        lblRol.setText("");
+                        tfID.setText("");
+                    }
                 }
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
         String ID=tfID.getText().toString();

@@ -13,6 +13,7 @@ public class eliminarP extends javax.swing.JFrame {
      */
     public eliminarP() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -150,6 +151,7 @@ public class eliminarP extends javax.swing.JFrame {
             @Override
             public void onComplete(Response status) {
                 if(status.isSuccess()){
+                    try{
                         JSONObject ID=new JSONObject(status.getResult());
                         String NOM=ID.getJSONObject("0").get("Nombre").toString();
                         String Marca=ID.getJSONObject("0").get("Marca").toString();
@@ -159,8 +161,16 @@ public class eliminarP extends javax.swing.JFrame {
                         lblMarca.setText(Marca);
                         lblPresentacion.setText(Presentacion);
                         lblPrecio.setText(Precio);
+                        tfID.setText("");
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(null, "Producto no encontrado u no existe");
+                        lblNombre.setText("");
+                        lblMarca.setText("");
+                        lblPresentacion.setText("");
+                        lblPrecio.setText("");
+                        tfID.setText("");
+                    }
                 }
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
         String ID=tfID.getText().toString();
@@ -173,9 +183,12 @@ public class eliminarP extends javax.swing.JFrame {
             @Override
             public void onComplete(Response status) {
                 if(status.isSuccess()){
-                    JOptionPane.showMessageDialog(null, "Producto y dependencias eliminados correctamente");
+                    try{
+                        JOptionPane.showMessageDialog(null, "Producto y dependencias eliminados correctamente");
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(null, "Error al eliminar el producto");
+                    }
                 }
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
         String ID=tfID.getText().toString();

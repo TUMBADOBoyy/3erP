@@ -10,6 +10,7 @@ public class actClie extends javax.swing.JFrame {
     String ID;
     public actClie() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -144,17 +145,26 @@ public class actClie extends javax.swing.JFrame {
             @Override
             public void onComplete(Response status) {
                 if(status.isSuccess()){
-                    JSONObject ID=new JSONObject(status.getResult());
-                    String NOM=ID.getJSONObject("0").get("Nombre").toString();
-                    String US=ID.getJSONObject("0").get("User").toString();
-                    String Pas=ID.getJSONObject("0").get("Password").toString();
-                    String Rol=ID.getJSONObject("0").get("Rol").toString();
-                    tfNombre.setText(NOM);
-                    tfUser.setText(US);
-                    tfPassword.setText(Pas);
-                    tfRol.setText(Rol);
+                    try{
+                        JSONObject ID=new JSONObject(status.getResult());
+                        String NOM=ID.getJSONObject("0").get("Nombre").toString();
+                        String US=ID.getJSONObject("0").get("User").toString();
+                        String Pas=ID.getJSONObject("0").get("Password").toString();
+                        String Rol=ID.getJSONObject("0").get("Rol").toString();
+                        tfNombre.setText(NOM);
+                        tfUser.setText(US);
+                        tfPassword.setText(Pas);
+                        tfRol.setText(Rol);
+                        tfID.setText("");
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(null, "El cliente no esta en la base de datos, prueba con otro");
+                        tfNombre.setText("");
+                        tfUser.setText("");
+                        tfPassword.setText("");
+                        tfRol.setText("");
+                        tfID.setText("");
+                    }
                 }
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
         ID=tfID.getText().toString();
@@ -167,9 +177,12 @@ public class actClie extends javax.swing.JFrame {
             @Override
             public void onComplete(Response status) {
                 if(status.isSuccess()){
-                    JOptionPane.showMessageDialog(null, "Cliente actualizado correctamente");
+                    try{
+                        JOptionPane.showMessageDialog(null, "Cliente actualizado correctamente");
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(null, "Ha ocurrido un error al intentar actualizar el cliente solicitado");
+                    }
                 }
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
         String Nom=tfNombre.getText().toString();

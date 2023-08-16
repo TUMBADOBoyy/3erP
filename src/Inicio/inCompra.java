@@ -12,6 +12,7 @@ public class inCompra extends javax.swing.JFrame {
      */
     public inCompra() {
         initComponents();
+        this.setLocationRelativeTo(null);
         btnInsertarP.setEnabled(false);
     }
 
@@ -125,9 +126,18 @@ public class inCompra extends javax.swing.JFrame {
             @Override
             public void onComplete(Response status) {
                 if(status.isSuccess()){
-                    JOptionPane.showMessageDialog(null, "Compra de producto registrada correctamente");
+                    try{
+                        JOptionPane.showMessageDialog(null, "Compra de producto registrada correctamente");
+                        tfCant.setText("");
+                        tfIDP.setText("");
+                        tfNoF.setText("");
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(null, "Error al registrar la compra de producto");
+                        tfCant.setText("");
+                        tfIDP.setText("");
+                        tfNoF.setText("");
+                    }
                 }
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
         String NoF=tfNoF.getText().toString();
@@ -143,12 +153,14 @@ public class inCompra extends javax.swing.JFrame {
             @Override
             public void onComplete(Response status) {
                 if(status.isSuccess()){
-                    JOptionPane.showMessageDialog(null, "El producto se encuentra en el inventario");
+                    try{
+                        JOptionPane.showMessageDialog(null, "El producto se encuentra en el inventario");
+                        tfIDP.setText("");
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(null, "Este producto no esta en el inventario");
+                        tfIDP.setText("");
+                    }
                 }
-                else{
-                    JOptionPane.showMessageDialog(null, "Este producto no esta em el inventario");
-                }
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
         btnInsertarP.setEnabled(true);

@@ -10,6 +10,7 @@ public class actP extends javax.swing.JFrame {
     
     public actP() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -135,17 +136,26 @@ public class actP extends javax.swing.JFrame {
             @Override
             public void onComplete(Response status) {
                 if(status.isSuccess()){
-                        JSONObject ID=new JSONObject(status.getResult());
-                        String NOM=ID.getJSONObject("0").get("Nombre").toString();
-                        String Marca=ID.getJSONObject("0").get("Marca").toString();
-                        String Presentacion=ID.getJSONObject("0").get("Presentacion").toString();
-                        String Precio=ID.getJSONObject("0").get("Precio").toString();
-                        tfNombre.setText(NOM);
-                        tfMarca.setText(Marca);
-                        tfPresentacion.setText(Presentacion);
-                        tfPrecio.setText(Precio);
+                    try{
+                            JSONObject ID=new JSONObject(status.getResult());
+                            String NOM=ID.getJSONObject("0").get("Nombre").toString();
+                            String Marca=ID.getJSONObject("0").get("Marca").toString();
+                            String Presentacion=ID.getJSONObject("0").get("Presentacion").toString();
+                            String Precio=ID.getJSONObject("0").get("Precio").toString();
+                            tfNombre.setText(NOM);
+                            tfMarca.setText(Marca);
+                            tfPresentacion.setText(Presentacion);
+                            tfPrecio.setText(Precio);
+                            tfID.setText("");
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(null, "El producto no esta en la base de datos");
+                        tfNombre.setText("");
+                        tfMarca.setText("");
+                        tfPresentacion.setText("");
+                        tfPrecio.setText("");
+                        tfID.setText("");
+                    }
                 }
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
         ID=tfID.getText().toString();
@@ -158,9 +168,22 @@ public class actP extends javax.swing.JFrame {
             @Override
             public void onComplete(Response status) {
                 if(status.isSuccess()){
-                    JOptionPane.showMessageDialog(null, "Producto actualizado correctamente");
+                    try{
+                        JOptionPane.showMessageDialog(null, "Producto actualizado correctamente");
+                        tfNombre.setText("");
+                        tfMarca.setText("");
+                        tfPresentacion.setText("");
+                        tfPrecio.setText("");
+                        tfID.setText("");
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(null, "Ha ocurrido un problema al actualizar producto");
+                        tfNombre.setText("");
+                        tfMarca.setText("");
+                        tfPresentacion.setText("");
+                        tfPrecio.setText("");
+                        tfID.setText("");
+                    }
                 }
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
         String Nom=tfNombre.getText().toString();

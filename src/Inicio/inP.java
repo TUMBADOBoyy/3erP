@@ -12,6 +12,7 @@ public class inP extends javax.swing.JFrame {
      */
     public inP() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -128,9 +129,22 @@ public class inP extends javax.swing.JFrame {
             @Override
             public void onComplete(Response status) {
                 if(status.isSuccess()){
-                    JOptionPane.showMessageDialog(null, "Producto registrado correctamente");
+                    try{
+                        JOptionPane.showMessageDialog(null, "Producto registrado correctamente");
+                        tfID.setText("");
+                        tfMarca.setText("");
+                        tfNombre.setText("");
+                        tfPrecio.setText("");
+                        tfPresentacion.setText("");
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(null, "Error al registrar el producto");
+                        tfID.setText("");
+                        tfMarca.setText("");
+                        tfNombre.setText("");
+                        tfPrecio.setText("");
+                        tfPresentacion.setText("");
+                    }
                 }
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
         String ID=tfID.getText().toString();

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="300" pageHeight="450" columnWidth="260" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="48ea0abb-7298-4213-8d49-2b45991078cb">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="STotal" class="java.lang.String"/>
+	<parameter name="idventa" class="java.lang.String"/>
+	<field name="jidproducto" class="java.lang.String"/>
+	<field name="jcantidad" class="java.lang.String"/>
+	<field name="jtotal" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="16" y="11" width="230" height="36" uuid="4c78d1dd-252f-4506-8647-59f7cba94c71"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Engravers MT" size="12"/>
+				</textElement>
+				<text><![CDATA[COMERCIALIZADORA LEON S.A. DE C.V.]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="15" width="135" height="20" uuid="29eef86c-77ea-4c96-9359-5001b58116e7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="176" y="15" width="70" height="20" uuid="bb6c295e-d051-4548-9f0d-48c24d1bb408"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{idventa}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="12" width="100" height="20" uuid="c1b84384-7f41-4686-8df6-c9d29bde2222"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Engravers MT"/>
+				</textElement>
+				<text><![CDATA[id producto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="97" y="12" width="79" height="20" uuid="5b0432c6-3ae8-42ce-bb4d-d7b3d35b9e54"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Engravers MT"/>
+				</textElement>
+				<text><![CDATA[cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="178" y="12" width="82" height="20" uuid="31b26c2d-9f5d-4442-909e-6c8c14b98ca7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Engravers MT"/>
+				</textElement>
+				<text><![CDATA[SUBtotal]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="38" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="12" width="100" height="20" uuid="94efdf11-1590-4696-b987-17bfa8844664"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jidproducto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="12" width="76" height="20" uuid="d2bb0e86-c1e3-4cbc-a3be-9600bca98b57"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jcantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="178" y="12" width="82" height="20" uuid="13901062-7679-4378-b0b4-957bcaaef52b"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jtotal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="37" splitType="Stretch">
+			<textField>
+				<reportElement x="146" y="12" width="83" height="20" uuid="6057c253-deb2-4b56-a0f4-7c467fd27688"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{STotal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="35" y="12" width="100" height="20" uuid="88af92ca-ab86-48bd-8d11-3d655d846406"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Total: ]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

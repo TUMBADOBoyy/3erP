@@ -12,6 +12,7 @@ public class inC extends javax.swing.JFrame {
      */
     public inC() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -35,6 +36,7 @@ public class inC extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         tfRol = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -93,6 +95,9 @@ public class inC extends javax.swing.JFrame {
         });
         jPanel1.add(tfRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 110, -1));
 
+        jLabel6.setText("1-ADMINISTRADOR. 2-GERENTES. 3-EMPLEADOS, ETC.");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 320, 30));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/t.jpg"))); // NOI18N
         jLabel1.setText("Presentac");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 280));
@@ -131,9 +136,13 @@ public class inC extends javax.swing.JFrame {
             @Override
             public void onComplete(Response status) {
                 if(status.isSuccess()){
-                    JOptionPane.showMessageDialog(null, "Cliente agregado correctamente");
-                }
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                    try{
+                        JOptionPane.showMessageDialog(null, "Cliente agregado correctamente");
+                        
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(null, "Error al insertar Cliente");
+                    }
+                }               
             }
         });
         String Nom=tfNombre.getText().toString();
@@ -141,8 +150,26 @@ public class inC extends javax.swing.JFrame {
         String Pass=tfPassword.getText().toString();
         String Rol=tfRol.getText().toString();
         i.excecute("http://localhost/Api/InC.php?Nombre="+Nom+"&User="+User+"&Password="+Pass+"&Rol="+Rol+""); 
+        max();
     }//GEN-LAST:event_btnInsertarActionPerformed
 
+    public void max(){
+        HttpClient k = new HttpClient(new OnHttpRequestComplete() {
+            @Override
+            public void onComplete(Response status) {
+                if(status.isSuccess()){
+                    try{
+                        JSONObject max=new JSONObject(status.getResult());
+                        String m=max.getJSONObject("0").get("ID").toString();
+                        JOptionPane.showMessageDialog(null, "SU ID ES: "+m);
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(null, "error");
+                    }
+                }
+            }
+        });
+        k.excecute("http://localhost/Api/max.php");
+    }
     /**
      * @param args the command line arguments
      */
@@ -190,6 +217,7 @@ public class inC extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField tfNombre;
     private javax.swing.JTextField tfPassword;

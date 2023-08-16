@@ -84,7 +84,6 @@ public class Sesion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -98,29 +97,32 @@ public class Sesion extends javax.swing.JFrame {
                         JSONObject u=new JSONObject(status.getResult());
                         String UserW=u.getJSONObject("0").get("User").toString();
                         String PasswordW=u.getJSONObject("0").get("Password").toString();
+                        String RolW=u.getJSONObject("0").get("Rol").toString();
                         if(tfUser.getText().toString().equals(UserW) && tfClave.getText().toString().equals(PasswordW)){
-                            this.setVisible(false);
-                            ventana.setVisible(true);
-                        }
-                        else{
-                            JOptionPane.showMessageDialog(null,"Datos incorrectos, vuelve a intentarlo");
+                            if(RolW.equals("1")){
+                                setVisible(false);
+                                ventana.setVisible(true);
+                            }
+                            else if(RolW.equals("2")){
+                                setVisible(false);
+                                ventana.setVisible(true);
+                                ventana.gerente();
+                            }
+                            else{
+                                setVisible(false);
+                                ventana.setVisible(true);
+                                ventana.vendedor();
+                            }
                         }
                     }catch(JSONException e){
+                        JOptionPane.showMessageDialog(null, "Datos incorrectos, vuelva a intentarlo");
                     }
                 }
-                
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            private void setVisible(boolean b) {
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
         String User=tfUser.getText().toString();
         String Password=tfClave.getText().toString();
-    
         cliente.excecute("http://localhost/Api/login.php?User="+User+"&Password="+Password+"");
-        this.setVisible(false);
     }//GEN-LAST:event_lEntradaMouseClicked
 
     private void tfClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfClaveActionPerformed

@@ -5,31 +5,50 @@ import com.devazt.networking.OnHttpRequestComplete;
 import com.devazt.networking.Response;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseListener;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import org.json.JSONObject;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
+
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanArrayDataSource;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
+
 public class inV extends javax.swing.JFrame {
     DefaultTableModel modelo;
     float cantidad=0;
     float Total=0;
     float unidad=0;
-    String IDF, IDP, Nombre, Cant, PrecioU, PrecioT;
+    float STot=0;
     /**
      * Creates new form buscarID
      */
     public inV() {
         initComponents();
+        this.setLocationRelativeTo(null);
         modelo = new DefaultTableModel();
-        modelo.addColumn("ID_Venta");
-        modelo.addColumn("ID_Producto");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Cantidad");
-        modelo.addColumn("Precio U");
-        modelo.addColumn("Total");
+        modelo.addColumn("jidventa");
+        modelo.addColumn("jidproducto");
+        modelo.addColumn("jnombre");
+        modelo.addColumn("jcantidad");
+        modelo.addColumn("jpreciou");
+        modelo.addColumn("jtotal");
         this.tabla.setModel(modelo);
     }
 
@@ -65,6 +84,8 @@ public class inV extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         lblStock = new javax.swing.JLabel();
         btnComprar = new javax.swing.JButton();
+        lblSTotal = new javax.swing.JLabel();
+        btnTicket = new javax.swing.JButton();
         lblPre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -73,7 +94,7 @@ public class inV extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Engravers MT", 2, 12)); // NOI18N
         jLabel6.setText("Precio");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, 20));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, 20));
         jPanel1.add(txtCant, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, 110, -1));
         jPanel1.add(txtIDP, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 110, -1));
 
@@ -96,7 +117,7 @@ public class inV extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 250, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Engravers MT", 2, 12)); // NOI18N
         jLabel3.setText("ID PRODUCTO");
@@ -127,7 +148,7 @@ public class inV extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "ID VENTA", "ID PRODUCTO", "NOMBRE", "CANTIDAD", "PRECIO U", "PRECIO T"
+                "ID VENTA", "ID PRODUCTO", "nombre", "CANTIDAD", "PRECIO U", "PRECIO T"
             }
         ));
         jScrollPane1.setViewportView(tabla);
@@ -159,7 +180,7 @@ public class inV extends javax.swing.JFrame {
                 btnElimPActionPerformed(evt);
             }
         });
-        jPanel1.add(btnElimP, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 140, 160, -1));
+        jPanel1.add(btnElimP, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 160, -1));
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/edit.png"))); // NOI18N
         jButton4.setText("Modificar Producto");
@@ -168,7 +189,7 @@ public class inV extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, -1, -1));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 170, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Engravers MT", 2, 12)); // NOI18N
         jLabel1.setText("Nombre");
@@ -191,11 +212,24 @@ public class inV extends javax.swing.JFrame {
                 btnComprarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, -1, -1));
+        jPanel1.add(btnComprar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 250, -1, -1));
+
+        lblSTotal.setFont(new java.awt.Font("Engravers MT", 2, 14)); // NOI18N
+        lblSTotal.setText("0");
+        jPanel1.add(lblSTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, -1, -1));
+
+        btnTicket.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/printer.png"))); // NOI18N
+        btnTicket.setText("Ticket");
+        btnTicket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTicketActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnTicket, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 250, -1, -1));
 
         lblPre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/t-fotor-20230726105123.png"))); // NOI18N
         lblPre.setText("Presentac");
-        jPanel1.add(lblPre, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 600, 480));
+        jPanel1.add(lblPre, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 470));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -205,7 +239,7 @@ public class inV extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
         );
 
         pack();
@@ -238,7 +272,9 @@ public class inV extends javax.swing.JFrame {
         info[4]=lblPrecio.getText();
         info[5]=total;
         modelo.addRow(info);
-        
+        STot+=Total;
+        String ST=Float.toString(STot);
+        lblSTotal.setText(ST);
         txtIDP.setText("");
         txtCant.setText("");
         lblPrecio.setText("...");
@@ -253,16 +289,23 @@ public class inV extends javax.swing.JFrame {
             @Override
             public void onComplete(Response status) {
                 if(status.isSuccess()){
-                    JSONObject ID=new JSONObject(status.getResult());
-                    String Nombre=ID.getJSONObject("0").get("Nombre").toString();
-                    String Precio=ID.getJSONObject("0").get("Precio").toString();
-                    String Cantidad=ID.getJSONObject("0").get("Cantidad").toString();
-                    lblPrecio.setText(Precio);
-                    lblNombre.setText(Nombre);
-                    lblStock.setText(Cantidad);
-                    unidad=Float.parseFloat(Precio);
+                    try{
+                        JSONObject ID=new JSONObject(status.getResult());
+                        String Nombre=ID.getJSONObject("0").get("Nombre").toString();
+                        String Precio=ID.getJSONObject("0").get("Precio").toString();
+                        String Cantidad=ID.getJSONObject("0").get("Cantidad").toString();
+                        lblPrecio.setText(Precio);
+                        lblNombre.setText(Nombre);
+                        lblStock.setText(Cantidad);
+                        unidad=Float.parseFloat(Precio);
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(null, "El producto no existe");
+                        lblPrecio.setText("");
+                        lblNombre.setText("");
+                        lblStock.setText("");
+                        unidad=Float.parseFloat("");
+                    }
                 }
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
         String ID=txtIDP.getText().toString();
@@ -300,23 +343,50 @@ public class inV extends javax.swing.JFrame {
             @Override
             public void onComplete(Response status) {
                 if(status.isSuccess()){
-                    JOptionPane.showMessageDialog(null, "Confio");
                 }
             }
         });
         int filas = tabla.getRowCount();
         String venta[][] = new String[filas][6];
-        System.out.println("" + filas);
+        //System.out.println("" + filas);
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < 6; j++) {
                 venta[i][j] = tabla.getValueAt(i, j).toString();
-                System.out.println("Fila " + i + ", Columna " + j + ": " + venta[i][j]);
+                //System.out.println("Fila " + i + ", Columna " + j + ": " + venta[i][j]);
             }
-            System.out.println("http://localhost/Api/inVenta.php?ID_Venta="+venta[i][0]+"&ID_Producto="+venta[i][1]+
-                    "&Nombre_Producto="+venta[i][2]+"&Cantidad_Producto="+venta[i][3]+"&Precio="+venta[i][4]+"&Total="+venta[i][5]+"");
-            cliente.excecute("http://localhost/Api/inVenta.php?ID_Venta="+venta[i][0]+"&ID_Producto="+venta[i][1]+"&Nombre_Producto="+venta[i][2]+"&Cantidad_Producto="+venta[i][3]+"&Precio="+venta[i][4]+"&Total="+venta[i][5]+"");
+            //System.out.println("http://localhost/Api/inVenta.php?ID_Venta="+venta[i][0]+"&ID_Producto="+venta[i][1]+
+              //      "&Nombre_Producto="+venta[i][2]+"&Cantidad_Producto="+venta[i][3]+"&Precio="+venta[i][4]+"&Total="+venta[i][5]+"");
+            cliente.excecute("http://localhost/Api/inVenta.php?ID_Venta="+venta[i][0]+"&ID_Producto="+venta[i][1]+"&Nombre="+venta[i][2]+"&Cantidad="+venta[i][3]+"&Precio_U="+venta[i][4]+"&Total="+venta[i][5]+"");
         }
+        JOptionPane.showMessageDialog(null, "Compra exitosa");
     }//GEN-LAST:event_btnComprarActionPerformed
+
+    private void btnTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTicketActionPerformed
+        // TODO add your handling code here:
+        ArrayList lista = new ArrayList();
+        for(int i=0;i<tabla.getRowCount();i++){
+            tick clientes= new tick(tabla.getValueAt(i, 1).toString(), tabla.getValueAt(i, 3).toString(), tabla.getValueAt(i, 5).toString());
+            lista.add(clientes);
+        }
+        
+        FileInputStream archivo;
+        try {
+            archivo = new FileInputStream("C:\\Users\\TUMBADOBoy\\Documents\\NetBeansProjects\\3erP\\src\\Jasper\\newReport.jasper");
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(archivo);
+            Map parametro = new HashMap();
+            parametro.put("STotal", lblSTotal.getText());
+            parametro.put("idventa", txtIDV.getText());
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, new JRBeanCollectionDataSource(lista));
+            JasperViewer.viewReport(jprint);
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(inV.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JRException ex) {
+            Logger.getLogger(inV.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_btnTicketActionPerformed
     
     /**
      * @param args the command line arguments
@@ -361,6 +431,7 @@ public class inV extends javax.swing.JFrame {
     private javax.swing.JButton btnElimP;
     private javax.swing.JButton btnInsVenta;
     private javax.swing.JButton btnNueva;
+    private javax.swing.JButton btnTicket;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -376,6 +447,7 @@ public class inV extends javax.swing.JFrame {
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblPre;
     private javax.swing.JLabel lblPrecio;
+    private javax.swing.JLabel lblSTotal;
     private javax.swing.JLabel lblStock;
     private javax.swing.JTable tabla;
     private javax.swing.JTextField txtCant;

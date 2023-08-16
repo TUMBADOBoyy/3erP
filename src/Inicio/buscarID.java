@@ -3,12 +3,14 @@ package Inicio;
 import com.devazt.networking.HttpClient;
 import com.devazt.networking.OnHttpRequestComplete;
 import com.devazt.networking.Response;
+import javax.swing.JOptionPane;
 import org.json.JSONObject;
 
 public class buscarID extends javax.swing.JFrame {
 
     public buscarID() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")
@@ -131,17 +133,20 @@ public class buscarID extends javax.swing.JFrame {
             @Override
             public void onComplete(Response status) {
                 if(status.isSuccess()){
-                        JSONObject ID=new JSONObject(status.getResult());
-                        String NOM=ID.getJSONObject("0").get("Nombre").toString();
-                        String US=ID.getJSONObject("0").get("User").toString();
-                        String Pas=ID.getJSONObject("0").get("Password").toString();
-                        String Rol=ID.getJSONObject("0").get("Rol").toString();
-                        lblNombre.setText(NOM);
-                        lblUser.setText(US);
-                        lblCon.setText(Pas);
-                        lblRol.setText(Rol);
+                        try{
+                            JSONObject ID=new JSONObject(status.getResult());
+                            String NOM=ID.getJSONObject("0").get("Nombre").toString();
+                            String US=ID.getJSONObject("0").get("User").toString();
+                            String Pas=ID.getJSONObject("0").get("Password").toString();
+                            String Rol=ID.getJSONObject("0").get("Rol").toString();
+                            lblNombre.setText(NOM);
+                            lblUser.setText(US);
+                            lblCon.setText(Pas);
+                            lblRol.setText(Rol);
+                        }catch(Exception e){
+                            JOptionPane.showMessageDialog(null, "El Cliente no existe.");
+                        }
                 }
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
         String ID=txtID.getText().toString();

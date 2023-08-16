@@ -3,12 +3,14 @@ package Inicio;
 import com.devazt.networking.HttpClient;
 import com.devazt.networking.OnHttpRequestComplete;
 import com.devazt.networking.Response;
+import javax.swing.JOptionPane;
 import org.json.JSONObject;
 public class buscarP extends javax.swing.JFrame {
 
 
     public buscarP() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -136,17 +138,20 @@ public class buscarP extends javax.swing.JFrame {
             @Override
             public void onComplete(Response status) {
                 if(status.isSuccess()){
-                        JSONObject ID=new JSONObject(status.getResult());
-                        String NOM=ID.getJSONObject("0").get("Nombre").toString();
-                        String Marca=ID.getJSONObject("0").get("Marca").toString();
-                        String Presentacion=ID.getJSONObject("0").get("Presentacion").toString();
-                        String Precio=ID.getJSONObject("0").get("Precio").toString();
-                        lblNombre.setText(NOM);
-                        lblMarca.setText(Marca);
-                        lblPresentacion.setText(Presentacion);
-                        lblPrecio.setText(Precio);
+                        try{
+                            JSONObject ID=new JSONObject(status.getResult());
+                            String NOM=ID.getJSONObject("0").get("Nombre").toString();
+                            String Marca=ID.getJSONObject("0").get("Marca").toString();
+                            String Presentacion=ID.getJSONObject("0").get("Presentacion").toString();
+                            String Precio=ID.getJSONObject("0").get("Precio").toString();
+                            lblNombre.setText(NOM);
+                            lblMarca.setText(Marca);
+                            lblPresentacion.setText(Presentacion);
+                            lblPrecio.setText(Precio);
+                        }catch(Exception e){
+                            JOptionPane.showMessageDialog(null, "El producto no existe");
+                        }
                 }
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
         String ID=tfID.getText().toString();
